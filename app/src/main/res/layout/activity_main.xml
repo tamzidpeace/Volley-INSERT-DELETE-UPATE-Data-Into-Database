@@ -20,6 +20,23 @@
         android:textSize="20sp"
         android:layout_height="wrap_content"
         android:hint="password"
+        android:layout_marginBottom="15dp"
+        />
+
+    <EditText
+        android:id="@+id/pre_username"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:hint="pre_username"
+        />
+
+    <EditText
+        android:id="@+id/pre_password"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:hint="pre_password"
         />
 
     <Button
@@ -33,5 +50,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="delete"/>
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="update"/>
 
 </LinearLayout>
