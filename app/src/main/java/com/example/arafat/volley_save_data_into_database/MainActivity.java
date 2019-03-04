@@ -39,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         Button save = findViewById(R.id.save);
+        final Button delete = findViewById(R.id.delete);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteInfo();
+            }
+        });
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -91,5 +99,49 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void deleteInfo() {
+        RequestQueue requestQueue;
+
+
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+
+        Network network = new BasicNetwork(new HurlStack());
+
+        requestQueue = new RequestQueue(cache, network);
+
+        requestQueue.start();
+
+        String url = "http://192.168.43.30/volley-delete-data.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Do something with the response
+                        Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error
+                        Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onErrorResponse: " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                String name = username.getText().toString();
+
+                Map<String, String> param = new HashMap<>();
+                param.put("user_name", name);
+                return param;
+            }
+        };
+
+        MySingleton.getInstance(MainActivity.this).addToRequestQueue(stringRequest);
+
     }
 }
