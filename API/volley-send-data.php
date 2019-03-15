@@ -1,7 +1,7 @@
 <?php 
 
-$user_name = $_POST["user_name"];
-$user_pass = $_POST["user_pass"];
+// $user_name = $_POST["user_name"];
+// $user_pass = $_POST["user_pass"];
 
 $username = "root";
 $password = "";
@@ -11,12 +11,12 @@ $con = mysqli_connect($host, $username, $password, $db_name);
 
 
 
-$sql = "insert into registration_info values('".$user_name."', '".$user_pass."');";
+// $sql = "insert into registration_info values('".$user_name."', '".$user_pass."');";
 
 
 
-/*$sql = "INSERT INTO registration_info (user_name, user_pass)
-VALUES ('John', 'Doe')";*/
+$sql = "INSERT INTO registration_info (user_name, user_pass)
+VALUES (?, ?)";
 
 if(mysqli_query($con, $sql)) {
 	echo "Data insertion successful";

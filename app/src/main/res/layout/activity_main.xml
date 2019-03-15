@@ -57,4 +57,16 @@
         android:layout_height="wrap_content"
         android:text="update"/>
 
+    <Button
+        android:id="@+id/show_btn"
+        android:text="show info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/info_tv"
+        android:hint="your information display here."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
